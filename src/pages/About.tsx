@@ -1,36 +1,49 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { heroImages } from "@/data/heroImages";
 
 export default function About() {
   return (
     <div className="pt-16">
       {/* Hero */}
-      <section className="border-b border-border/30 py-24 md:py-32">
+      <section className="border-b border-border/30 py-12 md:py-16">
         <div className="container mx-auto px-6">
-          <ScrollReveal>
-            <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-primary">
-              About Us
-            </p>
-            <h1 className="mb-6 max-w-2xl text-4xl font-semibold md:text-5xl">
-              Building Dream Homes in Chicago Since 2011
-            </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-foreground/70">
-              At Platinum Homes, we are in the business of building dream homes.
-              The highest quality craftsmanship. Truly custom designs that
-              reflect your lifestyle. A straight-forward process. This is the
-              foundation of our business, and all of our properties.
-            </p>
-          </ScrollReveal>
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
+            <ScrollReveal>
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-primary">
+                About Us
+              </p>
+              <h1 className="mb-6 max-w-2xl text-4xl font-semibold md:text-5xl">
+                Building Dream Homes in Chicago Since 2011
+              </h1>
+              <p className="max-w-2xl text-lg leading-relaxed text-foreground/70">
+                At Platinum Homes, we are in the business of building dream homes.
+                The highest quality craftsmanship. Truly custom designs that
+                reflect your lifestyle. A straight-forward process. This is the
+                foundation of our business, and all of our properties.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal className="min-w-0">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-muted">
+                <img
+                  src={heroImages[0]}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
       {/* Process */}
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-primary">
               How We Work
             </p>
-            <h2 className="mb-14 text-3xl font-semibold md:text-4xl">
+            <h2 className="mb-10 text-3xl font-semibold md:text-4xl">
               Our Process
             </h2>
           </ScrollReveal>

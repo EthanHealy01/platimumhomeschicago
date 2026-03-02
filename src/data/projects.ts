@@ -1,4 +1,9 @@
 import placeholderImg from "@/assets/placeholder-project.jpg";
+import {
+  propertyRegistry,
+  type FolderPattern,
+  type PropertyRecord,
+} from "@/data/propertyRegistry";
 
 export interface ProjectDetails {
   beds?: string;
@@ -20,160 +25,137 @@ export interface Project {
   details?: ProjectDetails;
   price?: string;
   externalUrl?: string;
+  agentName?: string;
+  agentUrl?: string;
   images: string[];
   featured: boolean;
   year?: number;
 }
 
-// ── Current Projects ──────────────────────────────────────────
+type RegistryProperty = PropertyRecord;
 
-const currentProjects: Project[] = [
-  {
-    slug: "734-central-ave-highland-park",
-    title: "734 Central Ave, Highland Park",
-    address: "734 Central Ave, Highland Park, IL",
-    category: "current",
-    statusLabel: "Now Selling",
-    description:
-      "Boutique 11-unit masonry building with elevator. Units feature 3 bed 3½ baths and 3 beds 3½ baths plus office options. 2,700–3,000 sq' units with attached heated garage.",
-    details: {
-      beds: "3",
-      baths: "3.5",
-      sqft: "2,700 – 3,000",
-      garage: "Attached heated",
-      buildingType: "Masonry with elevator",
-      units: "11",
-    },
-    images: [placeholderImg],
-    featured: false,
-  },
-  {
-    slug: "4713-n-clark-st",
-    title: "4713 N Clark St",
-    address: "4713 N Clark St, Chicago, IL",
-    category: "current",
-    statusLabel: "Delivery Spring 2026",
-    description: "36-unit plus commercial rental building. Delivery Spring of 2026.",
-    details: {
-      buildingType: "Mixed-use rental",
-      units: "36 + commercial",
-      deliveryDate: "Spring 2026",
-    },
-    images: [placeholderImg],
-    featured: false,
-  },
-  {
-    slug: "3121-n-clybourn",
-    title: "3121 N Clybourn",
-    address: "3121 N Clybourn, Chicago, IL",
-    category: "current",
-    statusLabel: "Delivery February 2025",
-    description:
-      "6-unit building. Delivery February of 2025. Duplexes: 4 bed, 3½ bath. Simplexes: 3 bed, 2 bath.",
-    details: {
-      units: "6",
-      buildingType: "Residential",
-      deliveryDate: "February 2025",
-    },
-    images: [placeholderImg],
-    featured: false,
-  },
-  {
-    slug: "2405-w-sunnyside",
-    title: "2405 W Sunnyside",
-    address: "2405 W Sunnyside, Chicago, IL",
-    category: "current",
-    statusLabel: "Delivery Fall 2025",
-    description:
-      "8-unit building with ground floor commercial. Delivery Fall of 2025. All units 3 beds 2 baths.",
-    details: {
-      beds: "3",
-      baths: "2",
-      units: "8 + commercial",
-      buildingType: "Mixed-use",
-      deliveryDate: "Fall 2025",
-    },
-    images: [placeholderImg],
-    featured: false,
-  },
-];
+const publicSinglesBase = "/property_images/singles";
+const publicFoldersBase = "/property_images/folders";
 
-// ── Past Projects (sold list) ─────────────────────────────────
-
-const pastSoldList: { year: number; addresses: string[] }[] = [
-  { year: 2024, addresses: ["3125 Clybourn", "1613 W Belmont"] },
-  { year: 2023, addresses: ["3352 N Ashland", "2606 W Chicago", "2612 W Chicago"] },
-  { year: 2022, addresses: ["2614 W Chicago", "2215 Halsted", "2761 N Kenmore"] },
-  { year: 2021, addresses: ["2759 W Lawrence", "2763 W Lawrence", "4304 N Western"] },
-  {
-    year: 2020,
-    addresses: ["2136 N Kenmore", "2745 W Lawrence", "2751 W Lawrence", "2755 W Lawrence"],
-  },
-  { year: 2019, addresses: ["1851 N Fremont", "2120 N Kenmore"] },
-  { year: 2018, addresses: ["2118 N Magnolia", "2745 W Lawrence"] },
-  {
-    year: 2017,
-    addresses: [
-      "2138 N Seminary",
-      "2139 N Seminary",
-      "2116 N Magnolia",
-      "2029 N Bissell Unit 1",
-      "2029 N Bissell Unit 2",
-    ],
-  },
-  { year: 2016, addresses: ["1823 N Bissell", "2122 N Kenmore", "1718 N Mohawk"] },
-  { year: 2015, addresses: ["1829 N Bissell", "1416 W School", "1543 W Diversey"] },
-  { year: 2014, addresses: ["2238 N Magnolia", "1818 N Wolcott", "1939 W Fletcher", "1456 W Fullerton"] },
-  { year: 2013, addresses: ["3301 N Leavitt", "2320 N Greenview", "2726 N Marshfield", "1709 W Wrightwood"] },
-  { year: 2012, addresses: ["3644 N Wayne", "3303 N Hoyne"] },
-  { year: 2011, addresses: ["1917 W Cornelia", "1921 W Newport"] },
-];
-
-function slugify(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/, "");
+function pad(n: number, width: number) {
+  return String(n).padStart(width, "0");
 }
 
-const featuredSlugs = new Set([
-  "2116-n-magnolia",
-  "2138-n-seminary",
-  "1543-w-diversey",
-  "2122-n-kenmore",
-]);
+function buildFolderFileList(opts: {
+  folder: string;
+  pattern: FolderPattern;
+}) {
+  const { folder, pattern } = opts;
+  const files: string[] = [];
+  for (let i = pattern.startIndex; i <= pattern.endIndex; i++) {
+    files.push(`${folder}_${pad(i, pattern.indexPad)}.${pattern.extension}`);
+  }
+  return files;
+}
 
-const pastProjects: Project[] = pastSoldList.flatMap(({ year, addresses }) =>
-  addresses.map((addr) => {
-    const slug = slugify(addr);
-    return {
-      slug,
-      title: addr,
-      address: `${addr}, Chicago, IL`,
-      category: "past" as const,
-      description: `Completed and sold in ${year}.`,
-      images: [placeholderImg],
-      featured: featuredSlugs.has(slug),
-      year,
-    };
-  })
-);
+function reorderWithCoverFirst(files: string[], coverFile?: string) {
+  if (!files.length) return files;
+  const cover = coverFile && files.includes(coverFile) ? coverFile : files[0];
+  return [cover, ...files.filter((f) => f !== cover)];
+}
+
+function getProjectImagesFromRegistry(p: RegistryProperty): string[] {
+  if (p.media.kind === "none") return [];
+  if (p.media.kind === "single") {
+    return [`${publicSinglesBase}/${p.media.file}`];
+  }
+
+  const media = p.media;
+  if (media.kind !== "folder") return [];
+
+  const rawFiles =
+    media.files ??
+    (media.pattern
+      ? buildFolderFileList({ folder: media.folder, pattern: media.pattern })
+      : []);
+
+  let coverFile = media.coverFile;
+  if (!coverFile && media.coverIndex && media.coverIndex > 0) {
+    const idx = media.coverIndex - 1;
+    coverFile = rawFiles[idx];
+  }
+
+  const orderedFiles = reorderWithCoverFirst(rawFiles, coverFile);
+  return orderedFiles.map((f) => `${publicFoldersBase}/${media.folder}/${f}`);
+}
+
+function toProject(p: RegistryProperty): Project {
+  const images = getProjectImagesFromRegistry(p);
+  const year =
+    p.dates?.sale && /^\d{4}$/.test(p.dates.sale) ? Number(p.dates.sale) : undefined;
+
+  const descriptionBase =
+    (p.description ?? "").trim() ||
+    (year ? `Completed and sold in ${year}.` : "Completed project.");
+  const description =
+    p.media.kind === "none" && p.category === "current"
+      ? `${descriptionBase}`.includes("Renderings coming soon")
+        ? `${descriptionBase}`
+        : `${descriptionBase} Renderings coming soon.`
+      : descriptionBase;
+
+  const details: ProjectDetails | undefined = p.specs
+    ? {
+        beds: p.specs.beds || undefined,
+        baths: p.specs.baths || undefined,
+        sqft: p.specs.sqft || undefined,
+        units: p.specs.units || undefined,
+        buildingType: p.specs.buildingType || undefined,
+        garage: p.specs.garage || undefined,
+        deliveryDate: p.estimatedDelivery || p.dates?.end || undefined,
+      }
+    : undefined;
+
+  return {
+    slug: p.slug,
+    title: p.name,
+    address: p.address || p.name,
+    category: p.category,
+    statusLabel: p.statusLabel,
+    description,
+    details,
+    price: p.price || undefined,
+    externalUrl: p.links?.externalUrl || undefined,
+    agentName: p.links?.agentName || undefined,
+    agentUrl: p.links?.agentUrl || undefined,
+    images: images.length ? images : [placeholderImg],
+    featured: p.featured,
+    year,
+  };
+}
+
+const registryProperties = propertyRegistry.properties;
+
+export const allProjects: Project[] = registryProperties.map(toProject);
 
 // ── Combined exports ──────────────────────────────────────────
-
-export const allProjects: Project[] = [...currentProjects, ...pastProjects];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return allProjects.find((p) => p.slug === slug);
 }
 
 export function getFeaturedProjects(): Project[] {
-  return allProjects.filter((p) => p.featured);
+  const featuredSlugs = new Set(
+    registryProperties.filter((p) => p.published && p.featured).map((p) => p.slug)
+  );
+  return allProjects.filter((p) => featuredSlugs.has(p.slug));
 }
 
 export function getCurrentProjects(): Project[] {
-  return allProjects.filter((p) => p.category === "current");
+  const slugs = new Set(
+    registryProperties.filter((p) => p.published && p.category === "current").map((p) => p.slug)
+  );
+  return allProjects.filter((p) => slugs.has(p.slug));
 }
 
 export function getPastProjects(): Project[] {
-  return allProjects.filter((p) => p.category === "past");
+  const slugs = new Set(
+    registryProperties.filter((p) => p.published && p.category === "past").map((p) => p.slug)
+  );
+  return allProjects.filter((p) => slugs.has(p.slug));
 }
-
-export { pastSoldList };

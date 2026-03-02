@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Project } from "@/data/projects";
 import { ArrowUpRight } from "lucide-react";
+import { highlightRenderingsComingSoon } from "@/components/highlightRenderingsComingSoon";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -28,7 +29,7 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.title}
           </h3>
           <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
-            {project.description}
+            {highlightRenderingsComingSoon(project.description)}
           </p>
         </div>
         <ArrowUpRight className="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />

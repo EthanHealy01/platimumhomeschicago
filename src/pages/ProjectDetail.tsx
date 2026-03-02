@@ -4,6 +4,7 @@ import { ProjectGallery } from "@/components/ProjectGallery";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import { highlightRenderingsComingSoon } from "@/components/highlightRenderingsComingSoon";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -54,14 +55,14 @@ export default function ProjectDetail() {
             </Link>
           </ScrollReveal>
 
-          <div className="grid gap-12 lg:grid-cols-[1fr_360px]">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px]">
             {/* Gallery */}
-            <ScrollReveal>
+            <ScrollReveal className="min-w-0">
               <ProjectGallery images={project.images} />
             </ScrollReveal>
 
             {/* Info */}
-            <ScrollReveal>
+            <ScrollReveal className="min-w-0">
               <div>
                 {project.statusLabel && (
                   <span className="mb-3 inline-block text-xs font-medium uppercase tracking-[0.2em] text-primary">
@@ -82,7 +83,7 @@ export default function ProjectDetail() {
                 )}
 
                 <p className="mb-8 text-sm leading-relaxed text-foreground/75">
-                  {project.description}
+                  {highlightRenderingsComingSoon(project.description)}
                 </p>
 
                 {detailItems.length > 0 && (
@@ -108,6 +109,23 @@ export default function ProjectDetail() {
                   >
                     View Listing <ExternalLink className="h-3 w-3" />
                   </a>
+                )}
+
+                {project.agentName && (
+                  <p className="mb-4 text-sm text-muted-foreground">
+                    {project.agentUrl ? (
+                      <a
+                        href={project.agentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-primary hover:underline"
+                      >
+                        {project.agentName} <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ) : (
+                      project.agentName
+                    )}
+                  </p>
                 )}
 
                 <div className="mt-2">

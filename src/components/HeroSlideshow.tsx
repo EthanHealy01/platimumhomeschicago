@@ -1,25 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
-
-const slides = [hero1, hero2, hero3, hero4];
+import { heroImages } from "@/data/heroImages";
 
 export function HeroSlideshow() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 5000);
+    const t = setInterval(() => setCurrent((p) => (p + 1) % heroImages.length), 5000);
     return () => clearInterval(t);
   }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {slides.map((src, i) => (
+      {heroImages.map((src, i) => (
         <img
           key={i}
           src={src}
@@ -63,7 +57,7 @@ export function HeroSlideshow() {
 
       {/* slide indicators */}
       <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-        {slides.map((_, i) => (
+        {heroImages.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}

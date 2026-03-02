@@ -48,6 +48,7 @@ export function Footer() {
             1456 W. Fullerton<br />
             Chicago, IL 60614<br />
             <a href="tel:7736611287" className="hover:text-primary">773.661.1287</a><br />
+            <span className="text-xs text-muted-foreground">From outside the U.S: </span><a href="tel:+17736611287" className="text-sm hover:text-primary">+1 773 661 1287</a><br />
             <a href="mailto:patrick@platinumhomeschicago.com" className="hover:text-primary">
               patrick@platinumhomeschicago.com
             </a>

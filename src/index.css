@@ -40,8 +40,13 @@
   * {
     @apply border-border;
   }
+  html {
+    overscroll-behavior-y: none;
+    background: #0a0a0a; /* matches hero top when overscroll still occurs */
+  }
   body {
     @apply bg-background text-foreground font-body antialiased;
+    overscroll-behavior-y: none;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
