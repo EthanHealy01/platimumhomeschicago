@@ -33,7 +33,7 @@ export function HeroSlideshow() {
             Platinum Homes Development
           </p>
           <h1 className="mb-6 max-w-3xl text-4xl font-semibold leading-[1.1] text-white md:text-6xl lg:text-7xl">
-            Chicago's Premier Custom Home Builder
+            Chicagoland's Premier Custom Home Builder
           </h1>
           <p className="mb-10 max-w-lg text-base leading-relaxed text-white/70 md:text-lg">
             The highest quality craftsmanship. Truly custom designs that reflect

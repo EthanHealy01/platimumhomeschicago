@@ -139,11 +139,19 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return allProjects.find((p) => p.slug === slug);
 }
 
+const featuredOrder = [
+  "734-central-ave-highland-park",
+  "2405-w-sunnyside",
+  "beverly-shores-home",
+  "2136-n-kenmore",
+];
+
 export function getFeaturedProjects(): Project[] {
   const featuredSlugs = new Set(
     registryProperties.filter((p) => p.published && p.featured).map((p) => p.slug)
   );
-  return allProjects.filter((p) => featuredSlugs.has(p.slug));
+  const map = new Map(allProjects.filter((p) => featuredSlugs.has(p.slug)).map((p) => [p.slug, p]));
+  return featuredOrder.filter((s) => map.has(s)).map((s) => map.get(s)!);
 }
 
 export function getCurrentProjects(): Project[] {

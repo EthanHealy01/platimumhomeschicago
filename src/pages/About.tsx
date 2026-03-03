@@ -1,5 +1,5 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { heroImages } from "@/data/heroImages";
+const aboutHeroImage = "/property_images/folders/2136_n_kenmore/2136_n_kenmore_19.jpg";
 
 export default function About() {
   return (
@@ -13,7 +13,7 @@ export default function About() {
                 About Us
               </p>
               <h1 className="mb-6 max-w-2xl text-4xl font-semibold md:text-5xl">
-                Building Dream Homes in Chicago Since 2011
+                Building Dream Homes in Chicagoland Since 2011
               </h1>
               <p className="max-w-2xl text-lg leading-relaxed text-foreground/70">
                 At Platinum Homes, we are in the business of building dream homes.
@@ -26,7 +26,7 @@ export default function About() {
             <ScrollReveal className="min-w-0">
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-muted">
                 <img
-                  src={heroImages[0]}
+                  src={aboutHeroImage}
                   alt=""
                   className="h-full w-full object-cover"
                 />
@@ -84,7 +84,7 @@ export default function About() {
                   goal, we have a set process in place to maintain schedules.
                   Upfront, your project manager will provide you with a detailed
                   construction schedule outlining the week-by-week process. We
-                  work with the best contractors in Chicago, each of whom have
+                  work with the best contractors in Chicagoland, each of whom have
                   built hundreds of homes.
                 </p>
               </div>

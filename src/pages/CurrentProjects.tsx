@@ -7,7 +7,7 @@ export default function CurrentProjects() {
 
   return (
     <div className="pt-16">
-      <section className="py-24 md:py-32">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <div className="mb-14">

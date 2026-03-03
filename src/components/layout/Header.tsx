@@ -51,6 +51,11 @@ export function Header() {
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
+          <img
+            src="/platinumhomeschicagologomini.png"
+            alt=""
+            className="h-8 w-auto object-contain"
+          />
           <span
             className={`text-lg font-display font-semibold tracking-wide transition-colors ${
               isHomeAtTop ? "text-white" : "text-foreground"

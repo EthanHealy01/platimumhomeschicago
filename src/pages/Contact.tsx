@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Phone, Mail, MapPin } from "lucide-react";
 
-import { heroImages } from "@/data/heroImages";
+const contactHeroImage = "/property_images/folders/2136_n_kenmore/2136_n_kenmore_19.jpg";
 
 /**
  * Toggle to show/hide the contact form. When false, the page only shows
@@ -28,7 +28,7 @@ export default function Contact() {
             {/* Hero block: image with intro text overlay */}
             <div className="relative min-h-[50vh] w-full overflow-hidden rounded-sm">
               <img
-                src={heroImages[0]}
+                src={contactHeroImage}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
               />
@@ -68,9 +68,6 @@ export default function Contact() {
                   <a href="tel:7736611287" className="text-sm text-foreground/75 hover:text-primary">
                     773.661.1287
                   </a>
-                  <span className="text-xs text-muted-foreground">
-                    From outside the U.S: <a href="tel:+17736611287" className="hover:text-primary">+1 773 661 1287</a>
-                  </span>
                 </div>
                 <div className="flex flex-col items-center gap-3 text-center">
                   <Mail className="h-4 w-4 shrink-0 text-primary" />
@@ -102,16 +99,11 @@ export default function Contact() {
                   Chicago, IL 60614
                 </div>
               </div>
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-4">
-                  <Phone className="h-4 w-4 shrink-0 text-primary" />
-                  <a href="tel:7736611287" className="text-sm text-foreground/75 hover:text-primary">
-                    773.661.1287
-                  </a>
-                </div>
-                <span className="text-xs text-muted-foreground">
-                  From outside the U.S: <a href="tel:+17736611287" className="hover:text-primary">+1 773 661 1287</a>
-                </span>
+              <div className="flex items-center gap-4">
+                <Phone className="h-4 w-4 shrink-0 text-primary" />
+                <a href="tel:7736611287" className="text-sm text-foreground/75 hover:text-primary">
+                  773.661.1287
+                </a>
               </div>
               <div className="flex items-center gap-4">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
@@ -128,7 +120,7 @@ export default function Contact() {
 
   return (
     <div className="pt-16">
-      <section className={CONTACT_FORM_ENABLED ? "py-24 md:py-32" : "pb-24 pt-8 md:pb-32"}>
+      <section className={CONTACT_FORM_ENABLED ? "py-24 md:py-32" : "py-12 md:py-16"}>
         <div className="container mx-auto px-6">
           <div className={CONTACT_FORM_ENABLED ? "grid gap-16 lg:grid-cols-2" : "flex w-full justify-center"}>
             {contactInfo}
