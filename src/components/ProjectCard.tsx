@@ -14,7 +14,7 @@ export function ProjectCard({ project }: { project: Project }) {
           src={project.images[0]}
           alt={project.title}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         />
         {project.statusLabel && (
           <span className="absolute left-4 top-4 bg-primary/90 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-primary-foreground">

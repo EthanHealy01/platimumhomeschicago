@@ -1,6 +1,7 @@
 import placeholderImg from "@/assets/placeholder-project.jpg";
 import {
   propertyRegistry,
+  type ActionButton,
   type FolderPattern,
   type PropertyRecord,
 } from "@/data/propertyRegistry";
@@ -29,7 +30,11 @@ export interface Project {
   agentUrl?: string;
   images: string[];
   featured: boolean;
+  featuredOrder?: number;
   year?: number;
+  actionButtons?: ActionButton[];
+  inquiryUrl?: string;
+  showInquiry: boolean;
 }
 
 type RegistryProperty = PropertyRecord;
@@ -111,6 +116,8 @@ function toProject(p: RegistryProperty): Project {
       }
     : undefined;
 
+  const showInquiry = p.showInquiry ?? (p.category === "current");
+
   return {
     slug: p.slug,
     title: p.name,
@@ -125,7 +132,11 @@ function toProject(p: RegistryProperty): Project {
     agentUrl: p.links?.agentUrl || undefined,
     images: images.length ? images : [placeholderImg],
     featured: p.featured,
+    featuredOrder: p.featuredOrder,
     year,
+    actionButtons: p.actionButtons,
+    inquiryUrl: p.inquiryUrl,
+    showInquiry,
   };
 }
 
@@ -139,19 +150,10 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return allProjects.find((p) => p.slug === slug);
 }
 
-const featuredOrder = [
-  "734-central-ave-highland-park",
-  "2405-w-sunnyside",
-  "beverly-shores-home",
-  "2136-n-kenmore",
-];
-
 export function getFeaturedProjects(): Project[] {
-  const featuredSlugs = new Set(
-    registryProperties.filter((p) => p.published && p.featured).map((p) => p.slug)
-  );
-  const map = new Map(allProjects.filter((p) => featuredSlugs.has(p.slug)).map((p) => [p.slug, p]));
-  return featuredOrder.filter((s) => map.has(s)).map((s) => map.get(s)!);
+  return allProjects
+    .filter((p) => p.featured)
+    .sort((a, b) => (a.featuredOrder ?? Infinity) - (b.featuredOrder ?? Infinity));
 }
 
 export function getCurrentProjects(): Project[] {

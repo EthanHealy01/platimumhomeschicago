@@ -3,6 +3,35 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { heroImages } from "@/data/heroImages";
 
+function getFallbackImageUrl(url: string): string {
+  const path = url.replace(/\?.*$/, "");
+  if (/\.(jpe?g|JPG|JPEG)$/i.test(path)) return path.replace(/\.(jpe?g|JPG|JPEG)$/i, ".png");
+  if (/\.png$/i.test(path)) return path.replace(/\.png$/i, ".jpg");
+  return url;
+}
+
+function HeroSlideImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [triedFallback, setTriedFallback] = useState(false);
+
+  const handleError = () => {
+    if (!triedFallback) {
+      setTriedFallback(true);
+      setCurrentSrc(getFallbackImageUrl(src));
+    }
+  };
+
+  return <img src={currentSrc} alt={alt} className={className} onError={handleError} />;
+}
+
 export function HeroSlideshow() {
   const [current, setCurrent] = useState(0);
 
@@ -14,7 +43,7 @@ export function HeroSlideshow() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {heroImages.map((src, i) => (
-        <img
+        <HeroSlideImage
           key={i}
           src={src}
           alt={`Platinum Homes project ${i + 1}`}

@@ -128,15 +128,46 @@ export default function ProjectDetail() {
                   </p>
                 )}
 
-                <div className="mt-2">
-                  <Button asChild size="lg" className="w-full text-sm uppercase tracking-wider">
-                    <Link
-                      to={`/contact?subject=Inquiry: ${project.title}`}
-                    >
-                      Inquire About This Property
-                    </Link>
-                  </Button>
-                </div>
+                {project.actionButtons && project.actionButtons.length > 0 && (
+                  <div className="mt-2 space-y-3">
+                    {project.actionButtons.map((btn) => (
+                      <Button
+                        key={btn.url}
+                        asChild
+                        size="lg"
+                        className="w-full text-sm uppercase tracking-wider"
+                      >
+                        <a
+                          href={btn.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {btn.label}
+                        </a>
+                      </Button>
+                    ))}
+                  </div>
+                )}
+
+                {project.showInquiry && (
+                  <div className="mt-2">
+                    <Button asChild size="lg" className="w-full text-sm uppercase tracking-wider">
+                      {project.inquiryUrl ? (
+                        <a
+                          href={project.inquiryUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Inquire About This Property
+                        </a>
+                      ) : (
+                        <Link to={`/contact?subject=Inquiry: ${project.title}`}>
+                          Inquire About This Property
+                        </Link>
+                      )}
+                    </Button>
+                  </div>
+                )}
               </div>
             </ScrollReveal>
           </div>

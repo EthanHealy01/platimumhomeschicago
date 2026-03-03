@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet";
 
 const links = [
@@ -86,15 +85,10 @@ export function Header() {
             </button>
           </SheetTrigger>
           <SheetContent side="right" className="w-72 border-border bg-background p-8">
-            <div className="mb-10 flex items-center justify-between">
+            <div className="mb-10">
               <span className="font-display text-lg font-semibold text-foreground">
                 Menu
               </span>
-              <SheetClose asChild>
-                <button aria-label="Close menu">
-                  <X className="h-5 w-5 text-foreground" />
-                </button>
-              </SheetClose>
             </div>
             <nav className="flex flex-col gap-6">
               {links.map((l) => (

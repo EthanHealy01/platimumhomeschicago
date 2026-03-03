@@ -29,6 +29,14 @@ export default function Index() {
                 that reflect your lifestyle. A straight-forward process. This is
                 the foundation of our business, and all of our properties.
               </p>
+              <div className="mt-10 flex flex-wrap justify-center gap-6 md:gap-10">
+                {["150+ homes completed", "15+ years of experience", "Serving Chicago & the North Shore"].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5">
+                    <span className="h-2 w-2 rounded-full bg-primary" />
+                    <span className="text-sm font-medium tracking-wide text-foreground/80">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
         </div>

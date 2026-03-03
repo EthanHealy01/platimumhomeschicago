@@ -40,6 +40,11 @@ export type PropertyDates = {
   sale?: string;
 };
 
+export type ActionButton = {
+  label: string;
+  url: string;
+};
+
 export type PropertyRecord = {
   slug: string;
   name: string;
@@ -47,6 +52,7 @@ export type PropertyRecord = {
   category: PropertyCategory;
   published: boolean;
   featured: boolean;
+  featuredOrder?: number;
   statusLabel?: string;
   price?: string;
   estimatedDelivery?: string;
@@ -55,6 +61,9 @@ export type PropertyRecord = {
   dates?: PropertyDates;
   specs?: PropertySpecs;
   media: PropertyMedia;
+  actionButtons?: ActionButton[];
+  inquiryUrl?: string;
+  showInquiry?: boolean;
 };
 
 export type PropertyRegistry = {
@@ -66,8 +75,26 @@ export const propertyRegistry = {
   schemaVersion: 1,
   properties: [
     // ════════════════════════════════════════════════════════════
-    // CURRENT PROJECTS — ordered by delivery date (earliest → latest)
+    // CURRENT PROJECTS — client-specified order
     // ════════════════════════════════════════════════════════════
+    {
+      slug: "734-central-ave-highland-park",
+      name: "734 Central Ave, Highland Park",
+      address: "734 Central Ave, Highland Park, IL",
+      category: "current",
+      published: true,
+      featured: true,
+      featuredOrder: 1,
+      statusLabel: "Summer 2027",
+      price: "Listing link coming soon",
+      description: "11 condos — 3 bed 3.5 bath. Listing link coming soon.",
+      estimatedDelivery: "Summer 2027",
+      links: { externalUrl: "https://www.theashburyhighlandpark.com/", agentName: "Jacqueline Lotzof", agentUrl: "https://www.compass.com/agents/jacqueline-lotzof/" },
+      dates: { start: "", end: "", sale: "2027" },
+      specs: { beds: "3", baths: "3.5", sqft: "", units: "11", buildingType: "Condo", garage: "" },
+      media: { kind: "single", file: "734_central_ave_highland_park.jpg" },
+      inquiryUrl: "https://www.theashburyhighlandpark.com/",
+    },
     {
       slug: "2405-w-sunnyside",
       name: "2405 W Sunnyside",
@@ -75,6 +102,7 @@ export const propertyRegistry = {
       category: "current",
       published: true,
       featured: true,
+      featuredOrder: 2,
       statusLabel: "Sold Out",
       price: "Sold out",
       description: "8 condos — 3 bed 3.5 bath.",
@@ -118,6 +146,12 @@ export const propertyRegistry = {
       dates: { start: "", end: "", sale: "2026" },
       specs: { beds: "1 & 2", baths: "", sqft: "", units: "36", buildingType: "Rental, ground floor commercial", garage: "" },
       media: { kind: "single", file: "4701_n_clark_st.jpg" },
+      showInquiry: false,
+      actionButtons: [
+        { label: "1 bed 1 bath units, from $2,095", url: "https://showmojo.com/l/b2e26770f6/4713-n-clark-st-408-chicago-il-60640?g=1&sd=true" },
+        { label: "2 bed 1 bath units, from $2,945", url: "https://showmojo.com/l/b293a140f6/4713-n-clark-st-209-chicago-il-60640?g=1&sd=true" },
+        { label: "2 bed 2 bath units, from $3,250", url: "https://showmojo.com/l/b322a430f6/4713-n-clark-st-307-chicago-il-60640?g=1&sd=true" },
+      ],
     },
     {
       slug: "2720-n-ashland",
@@ -136,9 +170,9 @@ export const propertyRegistry = {
       media: { kind: "single", file: "2718_ashland_rendering.jpg" },
     },
     {
-      slug: "2221-2231-n-magnolia-ave",
-      name: "2221/31 N Magnolia",
-      address: "2221 & 2231 N Magnolia Ave, Chicago, IL",
+      slug: "2221-2223-n-magnolia-ave",
+      name: "2221/23 N Magnolia",
+      address: "2221 & 2223 N Magnolia Ave, Chicago, IL",
       category: "current",
       published: true,
       featured: false,
@@ -150,6 +184,22 @@ export const propertyRegistry = {
       dates: { start: "", end: "", sale: "2026" },
       specs: { beds: "6", baths: "6.5", sqft: "~5,000", units: "2 homes", buildingType: "Single family (2 homes)", garage: "Attached heated" },
       media: { kind: "single", file: "2221-23_magnolia_rendering.jpg" },
+    },
+    {
+      slug: "2240-n-clybourn-ave",
+      name: "2240 N Clybourn Ave",
+      address: "2240 N Clybourn Ave, Chicago, IL",
+      category: "current",
+      published: true,
+      featured: false,
+      statusLabel: "Coming Soon",
+      price: "Coming soon",
+      description: "9 condos coming soon.",
+      estimatedDelivery: "Jan 2027",
+      links: { agentName: "Tim & Bridget Sheahan", agentUrl: "https://thesheahangroup.com/" },
+      dates: { start: "", end: "", sale: "2027" },
+      specs: { beds: "", baths: "", sqft: "", units: "9", buildingType: "Condo, ground floor retail", garage: "Attached parking" },
+      media: { kind: "none" },
     },
     {
       slug: "1933-n-hudson",
@@ -179,38 +229,6 @@ export const propertyRegistry = {
       },
       media: { kind: "none" },
     },
-    {
-      slug: "2240-n-clybourn-ave",
-      name: "2240 N Clybourn Ave",
-      address: "2240 N Clybourn Ave, Chicago, IL",
-      category: "current",
-      published: true,
-      featured: false,
-      statusLabel: "Coming Soon",
-      price: "Coming soon",
-      description: "9 condos coming soon.",
-      estimatedDelivery: "Jan 2027",
-      links: { agentName: "Tim & Bridget Sheahan", agentUrl: "https://thesheahangroup.com/" },
-      dates: { start: "", end: "", sale: "2027" },
-      specs: { beds: "", baths: "", sqft: "", units: "9", buildingType: "Condo, ground floor retail", garage: "Attached parking" },
-      media: { kind: "none" },
-    },
-    {
-      slug: "734-central-ave-highland-park",
-      name: "734 Central Ave, Highland Park",
-      address: "734 Central Ave, Highland Park, IL",
-      category: "current",
-      published: true,
-      featured: true,
-      statusLabel: "Summer 2027",
-      price: "Listing link coming soon",
-      description: "11 condos — 3 bed 3.5 bath. Listing link coming soon.",
-      estimatedDelivery: "Summer 2027",
-      links: { agentName: "Jacqueline Lotzof", agentUrl: "https://www.compass.com/agents/jacqueline-lotzof/" },
-      dates: { start: "", end: "", sale: "2027" },
-      specs: { beds: "3", baths: "3.5", sqft: "", units: "11", buildingType: "Condo", garage: "" },
-      media: { kind: "single", file: "734_central_ave_highland_park.jpg" },
-    },
 
     // ════════════════════════════════════════════════════════════
     // PAST PROJECTS — first 6 pinned, then newest → oldest
@@ -224,6 +242,7 @@ export const propertyRegistry = {
       category: "past",
       published: true,
       featured: true,
+      featuredOrder: 4,
       description: "Single family home — 6 bed 6.5 bath.",
       dates: { start: "", end: "", sale: "2020" },
       specs: { beds: "6", baths: "6.5", sqft: "", units: "", buildingType: "Single family home", garage: "" },
@@ -258,6 +277,7 @@ export const propertyRegistry = {
       category: "past",
       published: true,
       featured: true,
+      featuredOrder: 3,
       description: "Single family home — 7 bed 5 bath.",
       dates: { start: "", end: "", sale: "2022" },
       specs: { beds: "7", baths: "5", sqft: "", units: "", buildingType: "Single family home", garage: "" },
