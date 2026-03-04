@@ -1,4 +1,78 @@
 {
+  "redirects": [
+    { "source": "/past-projects-portfolio", "destination": "/past-projects", "permanent": true },
+
+    { "source": "/734-central-ave-highland-park-photos", "destination": "/projects/734-central-ave-highland-park", "permanent": true },
+    { "source": "/734-central-ave-highland-park", "destination": "/projects/734-central-ave-highland-park", "permanent": true },
+
+    { "source": "/2405-w-sunnyside-photos", "destination": "/projects/2405-w-sunnyside", "permanent": true },
+    { "source": "/2405-w-sunnyside", "destination": "/projects/2405-w-sunnyside", "permanent": true },
+
+    { "source": "/4701-n-clark-st-photos", "destination": "/projects/4701-n-clark-st", "permanent": true },
+    { "source": "/4701-n-clark-st", "destination": "/projects/4701-n-clark-st", "permanent": true },
+
+    { "source": "/2720-n-ashland-photos", "destination": "/projects/2720-n-ashland", "permanent": true },
+    { "source": "/2720-n-ashland", "destination": "/projects/2720-n-ashland", "permanent": true },
+
+    { "source": "/2221-2223-n-magnolia-ave-photos", "destination": "/projects/2221-2223-n-magnolia-ave", "permanent": true },
+    { "source": "/2221-2223-n-magnolia-ave", "destination": "/projects/2221-2223-n-magnolia-ave", "permanent": true },
+
+    { "source": "/2240-n-clybourn-ave-photos", "destination": "/projects/2240-n-clybourn-ave", "permanent": true },
+    { "source": "/2240-n-clybourn-ave", "destination": "/projects/2240-n-clybourn-ave", "permanent": true },
+
+    { "source": "/1933-n-hudson-photos", "destination": "/projects/1933-n-hudson", "permanent": true },
+    { "source": "/1933-n-hudson", "destination": "/projects/1933-n-hudson", "permanent": true },
+
+    { "source": "/2136-n-kenmore-photos", "destination": "/projects/2136-n-kenmore", "permanent": true },
+    { "source": "/2136-n-kenmore", "destination": "/projects/2136-n-kenmore", "permanent": true },
+    { "source": "/2136-kenmore-photos", "destination": "/projects/2136-n-kenmore", "permanent": true },
+
+    { "source": "/2116-n-magnolia-photos", "destination": "/projects/2116-n-magnolia", "permanent": true },
+    { "source": "/2116-n-magnolia", "destination": "/projects/2116-n-magnolia", "permanent": true },
+
+    { "source": "/beverly-shores-home-photos", "destination": "/projects/beverly-shores-home", "permanent": true },
+    { "source": "/beverly-shores-home", "destination": "/projects/beverly-shores-home", "permanent": true },
+    { "source": "/beverly-shores-photos", "destination": "/projects/beverly-shores-home", "permanent": true },
+
+    { "source": "/2215-n-halsted-photos", "destination": "/projects/2215-n-halsted", "permanent": true },
+    { "source": "/2215-n-halsted", "destination": "/projects/2215-n-halsted", "permanent": true },
+
+    { "source": "/3121-3125-n-clybourn-photos", "destination": "/projects/3121-3125-n-clybourn", "permanent": true },
+    { "source": "/3121-3125-n-clybourn", "destination": "/projects/3121-3125-n-clybourn", "permanent": true },
+
+    { "source": "/2745-2763-w-lawrence-photos", "destination": "/projects/2745-2763-w-lawrence", "permanent": true },
+    { "source": "/2745-2763-w-lawrence", "destination": "/projects/2745-2763-w-lawrence", "permanent": true },
+
+    { "source": "/1613-w-belmont-ave-photos", "destination": "/projects/1613-w-belmont-ave", "permanent": true },
+    { "source": "/1613-w-belmont-ave", "destination": "/projects/1613-w-belmont-ave", "permanent": true },
+
+    { "source": "/2604-2614-w-chicago-photos", "destination": "/projects/2604-2614-w-chicago", "permanent": true },
+    { "source": "/2604-2614-w-chicago", "destination": "/projects/2604-2614-w-chicago", "permanent": true },
+
+    { "source": "/3010-3014-w-montrose-photos", "destination": "/projects/3010-3014-w-montrose", "permanent": true },
+    { "source": "/3010-3014-w-montrose", "destination": "/projects/3010-3014-w-montrose", "permanent": true },
+
+    { "source": "/2138-n-seminary-photos", "destination": "/projects/2138-n-seminary", "permanent": true },
+    { "source": "/2138-n-seminary", "destination": "/projects/2138-n-seminary", "permanent": true },
+
+    { "source": "/2122-n-kenmore-photos", "destination": "/projects/2122-n-kenmore", "permanent": true },
+    { "source": "/2122-n-kenmore", "destination": "/projects/2122-n-kenmore", "permanent": true },
+
+    { "source": "/1543-w-diversey-photos", "destination": "/projects/1543-w-diversey", "permanent": true },
+    { "source": "/1543-w-diversey", "destination": "/projects/1543-w-diversey", "permanent": true },
+
+    { "source": "/2238-n-magnolia-photos", "destination": "/projects/2238-n-magnolia", "permanent": true },
+    { "source": "/2238-n-magnolia", "destination": "/projects/2238-n-magnolia", "permanent": true },
+
+    { "source": "/3301-n-leavitt-photos", "destination": "/projects/3301-n-leavitt", "permanent": true },
+    { "source": "/3301-n-leavitt", "destination": "/projects/3301-n-leavitt", "permanent": true },
+
+    { "source": "/3303-n-hoyne-photos", "destination": "/projects/3303-n-hoyne", "permanent": true },
+    { "source": "/3303-n-hoyne", "destination": "/projects/3303-n-hoyne", "permanent": true },
+
+    { "source": "/3644-n-wayne-photos", "destination": "/projects/3644-n-wayne", "permanent": true },
+    { "source": "/3644-n-wayne", "destination": "/projects/3644-n-wayne", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

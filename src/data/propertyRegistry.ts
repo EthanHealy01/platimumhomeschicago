@@ -199,7 +199,7 @@ export const propertyRegistry = {
       links: { agentName: "Tim & Bridget Sheahan", agentUrl: "https://thesheahangroup.com/" },
       dates: { start: "", end: "", sale: "2027" },
       specs: { beds: "", baths: "", sqft: "", units: "9", buildingType: "Condo, ground floor retail", garage: "Attached parking" },
-      media: { kind: "none" },
+      media: { kind: "single", file: "2240_n_clybourn.jpg" },
     },
     {
       slug: "1933-n-hudson",
