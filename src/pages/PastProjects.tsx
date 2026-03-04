@@ -35,7 +35,7 @@ export default function PastProjects() {
                 Past Projects
               </h1>
               <p className="mt-3 text-muted-foreground">
-                {projects.length} completed properties across Chicagoland
+                A selection of our previous projects
               </p>
             </div>
           </ScrollReveal>
