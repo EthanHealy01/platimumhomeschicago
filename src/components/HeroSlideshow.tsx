@@ -3,35 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { heroImages } from "@/data/heroImages";
 
-function getFallbackImageUrl(url: string): string {
-  const path = url.replace(/\?.*$/, "");
-  if (/\.(jpe?g|JPG|JPEG)$/i.test(path)) return path.replace(/\.(jpe?g|JPG|JPEG)$/i, ".png");
-  if (/\.png$/i.test(path)) return path.replace(/\.png$/i, ".jpg");
-  return url;
-}
-
-function HeroSlideImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className: string;
-}) {
-  const [currentSrc, setCurrentSrc] = useState(src);
-  const [triedFallback, setTriedFallback] = useState(false);
-
-  const handleError = () => {
-    if (!triedFallback) {
-      setTriedFallback(true);
-      setCurrentSrc(getFallbackImageUrl(src));
-    }
-  };
-
-  return <img src={currentSrc} alt={alt} className={className} onError={handleError} />;
-}
-
 export function HeroSlideshow() {
   const [current, setCurrent] = useState(0);
 
@@ -43,7 +14,7 @@ export function HeroSlideshow() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {heroImages.map((src, i) => (
-        <HeroSlideImage
+        <img
           key={i}
           src={src}
           alt={`Platinum Homes project ${i + 1}`}
@@ -62,7 +33,7 @@ export function HeroSlideshow() {
             Platinum Homes Development
           </p>
           <h1 className="mb-6 max-w-3xl text-4xl font-semibold leading-[1.1] text-white md:text-6xl lg:text-7xl">
-            Chicagoland's Premier Custom Home Builder
+            Chicago's Premier Custom Home Builder
           </h1>
           <p className="mb-10 max-w-lg text-base leading-relaxed text-white/70 md:text-lg">
             The highest quality craftsmanship. Truly custom designs that reflect
