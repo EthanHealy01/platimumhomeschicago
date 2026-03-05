@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/our-process", "destination": "/about#our-process", "permanent": true },
     { "source": "/past-projects-portfolio", "destination": "/past-projects", "permanent": true },
 
     { "source": "/734-central-ave-highland-park-photos", "destination": "/projects/734-central-ave-highland-park", "permanent": true },

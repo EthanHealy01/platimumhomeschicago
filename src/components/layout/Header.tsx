@@ -52,7 +52,7 @@ export function Header() {
         <Link to="/" className="flex items-center gap-2">
           <img
             src="/platinumhomeschicagologomini.png"
-            alt=""
+            alt="Platinum Homes Development Corporation logo"
             className="h-8 w-auto object-contain"
           />
           <span

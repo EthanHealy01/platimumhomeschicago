@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export function ProjectGallery({ images }: { images: string[] }) {
+export function ProjectGallery({ images, projectTitle }: { images: string[]; projectTitle?: string }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selected, setSelected] = useState(0);
   const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -39,7 +39,7 @@ export function ProjectGallery({ images }: { images: string[] }) {
             <div key={i} className="min-w-0 flex-[0_0_100%] flex justify-center overflow-hidden">
               <img
                 src={src}
-                alt=""
+                alt={`${projectTitle || "Property"} — photo ${i + 1} of ${images.length}`}
                 className="max-h-[65vh] max-w-full w-auto object-contain"
               />
             </div>
@@ -79,7 +79,7 @@ export function ProjectGallery({ images }: { images: string[] }) {
                     : "border-transparent opacity-40 hover:opacity-70"
                 }`}
               >
-                <img src={src} alt="" className="h-full w-full object-cover" />
+                <img src={src} alt={`${projectTitle || "Property"} thumbnail ${i + 1}`} className="h-full w-full object-cover" />
               </button>
             ))}
           </div>

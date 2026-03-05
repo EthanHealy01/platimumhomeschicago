@@ -1,7 +1,29 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { usePageSEO } from "@/hooks/usePageSEO";
+
 const aboutHeroImage = "/property_images/folders/2136_n_kenmore/2136_n_kenmore_19.jpg";
 
 export default function About() {
+  const { hash } = useLocation();
+
+  usePageSEO({
+    title: "About Us",
+    description:
+      "Learn about Platinum Homes Development Corporation — Chicago's premier custom home builder since 2011. From vision to keys, our dedicated team delivers the highest quality craftsmanship on time and on budget.",
+    path: "/about",
+  });
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+      }
+    }
+  }, [hash]);
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -27,7 +49,7 @@ export default function About() {
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-muted">
                 <img
                   src={aboutHeroImage}
-                  alt=""
+                  alt="Luxury custom home interior by Platinum Homes in Chicago"
                   className="h-full w-full object-cover"
                 />
               </div>
@@ -37,7 +59,7 @@ export default function About() {
       </section>
 
       {/* Process */}
-      <section className="py-16 md:py-24">
+      <section id="our-process" className="py-16 md:py-24">
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-primary">

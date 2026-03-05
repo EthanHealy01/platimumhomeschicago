@@ -5,10 +5,20 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { highlightRenderingsComingSoon } from "@/components/highlightRenderingsComingSoon";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getProjectBySlug(slug) : undefined;
+
+  usePageSEO({
+    title: project ? project.title : "Project Not Found",
+    description: project
+      ? `${project.title}${project.address ? ` — ${project.address}` : ""}. ${project.description} Built by Platinum Homes Development Corporation, Chicago's premier custom home builder.`
+      : "The project you are looking for could not be found.",
+    path: `/projects/${slug || ""}`,
+    noindex: !project,
+  });
 
   if (!project) {
     return (
@@ -58,7 +68,7 @@ export default function ProjectDetail() {
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px]">
             {/* Gallery */}
             <ScrollReveal className="min-w-0">
-              <ProjectGallery images={project.images} />
+              <ProjectGallery images={project.images} projectTitle={project.title} />
             </ScrollReveal>
 
             {/* Info */}

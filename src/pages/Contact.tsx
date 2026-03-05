@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 const contactHeroImage = "/property_images/folders/2136_n_kenmore/2136_n_kenmore_19.jpg";
 
@@ -16,6 +17,13 @@ const contactHeroImage = "/property_images/folders/2136_n_kenmore/2136_n_kenmore
 const CONTACT_FORM_ENABLED = false;
 
 export default function Contact() {
+  usePageSEO({
+    title: "Contact Us",
+    description:
+      "Get in touch with Platinum Homes Development Corporation. Visit us at 1456 W. Fullerton, Chicago, IL 60614, call 773.661.1287, or email patrick@platinumhomeschicago.com.",
+    path: "/contact",
+  });
+
   const [params] = useSearchParams();
   const [subject] = useState(params.get("subject") || "");
   const [submitted, setSubmitted] = useState(false);
@@ -29,7 +37,7 @@ export default function Contact() {
             <div className="relative min-h-[50vh] w-full overflow-hidden rounded-sm">
               <img
                 src={contactHeroImage}
-                alt=""
+                alt="Custom home by Platinum Homes Development Corporation in Chicago"
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />

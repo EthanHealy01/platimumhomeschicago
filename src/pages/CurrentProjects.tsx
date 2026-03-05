@@ -1,9 +1,17 @@
 import { getCurrentProjects } from "@/data/projects";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 export default function CurrentProjects() {
   const projects = getCurrentProjects();
+
+  usePageSEO({
+    title: "Current Projects",
+    description:
+      "Explore current custom home and condo development projects by Platinum Homes across Chicago, Highland Park, and the North Shore. New construction homes and condos available now.",
+    path: "/current-projects",
+  });
 
   return (
     <div className="pt-16">

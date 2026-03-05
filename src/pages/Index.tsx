@@ -6,10 +6,18 @@ import { TestimonialSlider } from "@/components/TestimonialSlider";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { getFeaturedProjects } from "@/data/projects";
 import { ArrowRight } from "lucide-react";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 const featured = getFeaturedProjects();
 
 export default function Index() {
+  usePageSEO({
+    title: "Platinum Homes Development Corporation | Chicago's Premier Custom Home Builder",
+    description:
+      "Chicago's premier custom home builder since 2011. Over 150 homes completed with truly custom designs, highest quality craftsmanship, and on-time, on-budget delivery across Chicago and the North Shore.",
+    path: "/",
+  });
+
   return (
     <>
       {/* Hero */}

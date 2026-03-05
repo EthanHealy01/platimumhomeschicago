@@ -1,6 +1,7 @@
 import { getPastProjects } from "@/data/projects";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { usePageSEO } from "@/hooks/usePageSEO";
 
 const soldDirectory: { year: number; addresses: string[] }[] = [
   { year: 2011, addresses: ["1917 W Cornelia", "1921 W Newport"] },
@@ -21,6 +22,13 @@ const soldDirectory: { year: number; addresses: string[] }[] = [
 
 export default function PastProjects() {
   const projects = getPastProjects();
+
+  usePageSEO({
+    title: "Past Projects",
+    description:
+      "Browse the complete portfolio of custom homes and condos built by Platinum Homes in Chicago since 2011. Over 150 properties delivered on time and on budget.",
+    path: "/past-projects",
+  });
 
   return (
     <div className="pt-16">
