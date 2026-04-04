@@ -227,7 +227,7 @@ export const propertyRegistry = {
         buildingType: "Single family",
         garage: "Attached heated",
       },
-      media: { kind: "none" },
+      media: { kind: "single", file: "1933_n_hudson.png" },
     },
 
     // ════════════════════════════════════════════════════════════
