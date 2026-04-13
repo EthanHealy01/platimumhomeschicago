@@ -229,6 +229,33 @@ export const propertyRegistry = {
       },
       media: { kind: "single", file: "1933_n_hudson.png" },
     },
+    {
+      slug: "1230-34-w-grace-st",
+      name: "1230-34 W Grace St",
+      address: "1230-34 W Grace St, Chicago, IL",
+      category: "current",
+      published: true,
+      featured: false,
+      statusLabel: "Summer 2027",
+      price: "Coming soon",
+      description: "4 duplexes coming soon.",
+      estimatedDelivery: "Summer 2027",
+      links: {
+        agentName: "Peter Angelo",
+        agentUrl:
+          "https://www.sothebysrealty.com/eng/associate/180-a-1253-4023623/peter-angelo",
+      },
+      dates: { start: "", end: "", sale: "2027" },
+      specs: {
+        beds: "4",
+        baths: "3.5",
+        sqft: "",
+        units: "4",
+        buildingType: "Condo with detached garage",
+        garage: "",
+      },
+      media: { kind: "single", file: "1230-34_w_grace_st.jpg" },
+    },
 
     // ════════════════════════════════════════════════════════════
     // PAST PROJECTS — first 6 pinned, then newest → oldest
